@@ -2,6 +2,7 @@
 #include <GL/glut.h>
 #include <vector>
 #include <math.h>
+#include <stdlib.h>
 using namespace std;
 
 class Point{
@@ -27,9 +28,9 @@ public:
 		glBegin(GL_LINE_LOOP);
 		for(int i=0; i<=360; i++){
 
-			glVertex2f(p+rad*cos(i*2*3.14/360)+translate.x,q+rad*sin(i*2*3.14/360));
+			glVertex2f(p+rad*cos(i*2*3.14/360)+translate.x,q+rad*sin(i*2*3.14/360)+translate.y);
 			if(i==spokeNo)
-				glVertex2f(p+translate.x,q);
+				glVertex2f(p+translate.x,q+translate.y);
 		}
 		glEnd();
 		glFlush();
@@ -78,23 +79,31 @@ public:
 	
 };
 
-	Car c;
+	Car c1;
+	Car c2;
 
-void step(int k){
-	c.trans.x+=k;
-	c.s-=k;
-	c.s%=360;
+void step(){
+	int k=rand()%10;
+	c1.trans.x+=k;
+	c2.trans.x+=k;
+	c1.s-=k;
+	c1.s%=360;
+	c2.trans.y=150;
+	c1.s-=k;
+	c1.s%=360;
+
 }
 int i=1;
 void display(){
 	// Car c;
 
-	c.drawCar(pts);
+	c1.drawCar(pts);
+	c2.drawCar(pts);
 	// glFlush();
 }
 void idle(){
 	glClear(GL_COLOR_BUFFER_BIT);
-	step(2);
+	step();
 	display();
 	
 }

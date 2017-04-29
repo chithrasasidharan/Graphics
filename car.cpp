@@ -29,7 +29,7 @@ public:
 
 			glVertex2f(p+rad*cos(i*2*3.14/360)+translate.x,q+rad*sin(i*2*3.14/360));
 			if(i==spokeNo)
-				glVertex2f(p+translate.x,y);
+				glVertex2f(p+translate.x,q);
 		}
 		glEnd();
 		glFlush();
@@ -39,7 +39,7 @@ class Car
 {
 public:
 		Circle *a, *b;
-		int s;
+		int s=360;
 		Point trans;
 	Car(){
 		a=new Circle(120,50,40);

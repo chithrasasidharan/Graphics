@@ -29,7 +29,7 @@ public:
 		for(int i=0; i<=360; i++){
 
 			glVertex2f(p+rad*cos(i*2*3.14/360)+translate.x,q+rad*sin(i*2*3.14/360)+translate.y);
-			if(i==spokeNo)
+			if((spokeNo-i)%30==0)
 				glVertex2f(p+translate.x,q+translate.y);
 		}
 		glEnd();
@@ -84,24 +84,26 @@ public:
 
 void step(){
 	int k=rand()%10;
+	int m=rand()%10;
 	c1.trans.x+=k;
-	c2.trans.x+=k;
+	c2.trans.x+=m;
 	c1.s-=k;
 	c1.s%=360;
 	c2.trans.y=150;
-	c1.s-=k;
-	c1.s%=360;
+	c2.s-=m;
+	c2.s%=360;
 
 }
-int i=1;
+// int i=1;
 void display(){
 	// Car c;
 
-	c1.drawCar(pts);
-	c2.drawCar(pts);
+	
 	// glFlush();
 }
 void idle(){
+	c1.drawCar(pts);
+	c2.drawCar(pts);
 	glClear(GL_COLOR_BUFFER_BIT);
 	step();
 	display();

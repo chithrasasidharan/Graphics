@@ -91,8 +91,6 @@ public:
 		return neighbours; 
 	}
 	void dfs(int p){
-		if(nodes[p].visited)
-			return;
 		vector<int>neighbours=getNeighbours(p);
 		nodes[p].visited=true;
 		nodes[p].state="grey";
@@ -100,7 +98,7 @@ public:
 		usleep(sleepTime);
 		for(int i=0; i<neighbours.size(); i++)
 		{
-			// if(!nodes[i].visited)
+			if(nodes[i].visited)
 				dfs(neighbours[i]);
 		}
 		nodes[p].state="black";

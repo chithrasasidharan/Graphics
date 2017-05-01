@@ -2,8 +2,10 @@
 #include <GL/glut.h>
 #include <vector>
 #include <math.h>
+#include <unistd.h>
 using namespace std;
 
+#define sleepTime 1000000
 class Point{
 public:
 	int x, y;
@@ -44,7 +46,7 @@ class edge{
 public:
 	int u,v;
 	int wt;
-	string state;
+	string state="white";
 	edge(int p, int q, int w){
 		u = p;
 		v = q;
@@ -64,18 +66,18 @@ public:
 	vector<node>nodes;
 	vector<edge>edges;
 	Graph(){
-		nodes.push_back(node(1,Point(300,300)));
-		nodes.push_back(node(2,Point(300,250)));
-		// nodes.push_back(node(3,Point(300,350)));
-		nodes.push_back(node(4,Point(350,300)));
-		// nodes.push_back(node(5,Point(350,350)));
-		// nodes.push_back(node(1,350,300));
-		// nodes.push_back(node(6,Point(350,250)));
-		edges.push_back(edge(1,2,3));
-		// edges.push_back(edge(1,3,4));
-		edges.push_back(edge(1,4,5));
-		// edges.push_back(edge(4,5,2));
-		// edges.push_back(edge(5,6,1));
+		nodes.push_back(node(0,Point(300,300)));
+		nodes.push_back(node(1,Point(300,250)));
+		nodes.push_back(node(2,Point(300,350)));
+		nodes.push_back(node(3,Point(350,300)));
+		nodes.push_back(node(4,Point(350,350)));
+		nodes.push_back(node(6,Point(350,250)));
+		edges.push_back(edge(0,1,3));
+		edges.push_back(edge(0,2,4));
+		edges.push_back(edge(0,3,5));
+		edges.push_back(edge(1,5,1));
+		edges.push_back(edge(3,4,2));
+		edges.push_back(edge(3,5,1));
 	}
 
 	vector<int> getNeighbours(int p){
@@ -93,6 +95,7 @@ public:
 		nodes[p].visited=true;
 		nodes[p].state="grey";
 		nodes[p].draw();
+		usleep(sleepTime);
 		for(int i=0; i<neighbours.size(); i++)
 		{
 			if(nodes[i].visited)
@@ -100,6 +103,7 @@ public:
 		}
 		nodes[p].state="black";
 		nodes[p].draw();
+		usleep(sleepTime);
 	}
 	void draw(){
 		for(int i=0; i<nodes.size(); i++)
@@ -111,8 +115,8 @@ public:
 };
 void display(){
 	Graph g;
-	g.dfs(1);
 	g.draw();
+	g.dfs(1);
 }
 
 int main(int argc, char *argv[])

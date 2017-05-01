@@ -67,7 +67,7 @@ int main(int argc, char  *argv[])
 	gluOrtho2D(-250,250,-250,250);
 	glClearColor(0,0,0,0);
 	glClear(GL_COLOR_BUFFER_BIT);
-	   glutKeyboardFunc(keyboard);
+	glutKeyboardFunc(keyboard);
 	glutTimerFunc(40,display,1);
 	glutMainLoop();
 	return 0;

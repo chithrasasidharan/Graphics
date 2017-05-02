@@ -100,7 +100,7 @@ public:
 
 	set<set<int>>::iterator findRep(int p){
 		for(auto it= S.begin(); it!=S.end(); it++){
-			int rep = *(it->begin());
+			// int rep = *(it->begin());
 			for(auto i=	it->begin(); i!=it->end(); i++)
 			{
 				if(*i==p)
@@ -115,7 +115,7 @@ public:
 			S.insert(s);
 		}
 		vector<edge>temp = edges;
-		for(int i=0; i<temp.size(); i++){
+		for(int i=0; i<edges.size(); i++){
 			int min=0;
 			for(int j=0; j<temp.size(); j++){
 				if(temp[j].wt<temp[min].wt)
@@ -149,6 +149,7 @@ public:
 			}
 			for(int i=0; i<A.size(); i++)
 				edges[A[i]].state="grey";
+			draw();
 		}
 
 	}

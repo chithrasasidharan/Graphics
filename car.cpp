@@ -69,8 +69,8 @@ public:
 			glVertex2f(pts[i].x+trans.x,pts[i].y+trans.y);
 		glEnd();
 		glBegin(GL_LINES);
-			glVertex2f(160+trans.x,50);
-			glVertex2f(280+trans.x,50);
+			glVertex2f(160+trans.x,50+trans.y);
+			glVertex2f(280+trans.x,50+trans.y);
 		glEnd();
 		glFlush();
 	}
